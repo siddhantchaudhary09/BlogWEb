@@ -28,7 +28,7 @@ export class Service {
         }
       );
     } catch (error) {
-      throw error;
+      console.log("error in createPost", error);
     }
   }
   async updatePost(slug, { title, content, featuredImage, status }) {
@@ -40,7 +40,7 @@ export class Service {
         { title, content, featuredImage, status }
       );
     } catch (error) {
-      throw error;
+      console.log("error in updatePost", error);
     }
   }
   async deletePost(slug) {
@@ -48,7 +48,7 @@ export class Service {
       this.databases.deleteDocument(conf.databaseid, conf.collectionid, slug);
       return true;
     } catch (error) {
-      throw error;
+      console.log("error in deletePost", error);
       return false;
     }
   }
@@ -61,18 +61,18 @@ export class Service {
         slug
       );
     } catch (error) {
-      throw error;
+      console.log("error in getPost", error);
     }
   }
-  async getAllPosts(Queries = [Query.equal("status", "Active")]) {
+  async getAllPosts(queries = [Query.equal("status", "Active")]) {
     try {
       return await this.databases.listDocuments(
         conf.databaseid,
         conf.collectionid,
-        Queries
+        queries
       );
     } catch (error) {
-      throw error;
+      console.log("error in getAllPosts", error);
     }
   }
 
@@ -82,7 +82,7 @@ export class Service {
     try {
       return await this.bucket.createFile(conf.bucketid, ID.unique(), file);
     } catch (error) {
-      throw error;
+      console.log("error in uploadFile", error);
     }
   }
 
@@ -91,7 +91,7 @@ export class Service {
       await this.bucket.deleteFile(conf.bucketid, fileId);
       return true;
     } catch (error) {
-      throw error;
+      console.log("error in deleteFile", error);
       return false;
     }
   }
@@ -100,7 +100,7 @@ export class Service {
     try {
       return this.bucket.getFilePreview(conf.bucketid, fileId);
     } catch (error) {
-      throw error;
+      console.log("error in getfilePreview", error);
     }
   }
 }
