@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import authService from "../Appwrite/Authservice";
 import { login as storeLogin } from "../Store/authSlice";
 import Logo from "./Logo";
+import Button from "./Button";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -76,9 +77,9 @@ const Login = () => {
                 required: true,
               })}
             />
-            <button type="submit" className="w-full">
+            <Button type="submit" className="w-8/12">
               Sign in
-            </button>
+            </Button>
           </div>
         </form>
       </div>

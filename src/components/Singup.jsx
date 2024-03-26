@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login as storeLogin } from "../Store/authSlice";
 import Logo from "./Logo";
+import Button from "./Button";
 
 const Singup = () => {
   const dispatch = useDispatch();
@@ -84,9 +85,9 @@ const Singup = () => {
                 required: true,
               })}
             />
-            <button type="submit" className="w-full">
+            <Button type="submit" className="w-8/12">
               Create Account
-            </button>
+            </Button>
           </div>
         </form>
       </div>
