@@ -1,4 +1,4 @@
-import { Container } from "postcss";
+import Container from "../container/Container";
 import React from "react";
 import { useSelector } from "react-redux";
 import Logo from "../Logo";
@@ -39,18 +39,21 @@ function Header() {
   return (
     <header>
       <Container>
-        <nav>
-          <div>
+        <nav className="flex">
+          <div className="mr-4">
             <Link to="/">
               <Logo />
             </Link>
           </div>
 
-          <ul>
+          <ul className="flex ml-auto">
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.slug}>
-                  <button onClick={() => navigate(item.slug)}>
+                  <button
+                    onClick={() => navigate(item.slug)}
+                    className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                  >
                     {item.name}
                   </button>
                 </li>

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import authService from "../Appwrite/Authservice";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login as storeLogin } from "../Store/authSlice";
+import Logo from "./Logo";
 
 const Singup = () => {
   const dispatch = useDispatch();

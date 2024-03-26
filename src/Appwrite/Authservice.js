@@ -30,9 +30,9 @@ export class AuthService {
     }
   }
 
-  async Login(email, password) {
+  async Login({ email, password }) {
     try {
-      return await this.account.createEmailPasswordSession({ email, password });
+      return await this.account.createEmailSession(email, password);
     } catch (error) {
       console.log("error in Login:", error);
     }
@@ -50,8 +50,10 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log("error::getCurrentuser", error);
+      console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
+
+    return null;
   }
 }
 

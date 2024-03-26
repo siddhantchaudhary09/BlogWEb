@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authService from "../Appwrite/Authservice";
 import { login as storeLogin } from "../Store/authSlice";
+import Logo from "./Logo";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
-  const Login = async (data) => {
+  const login = async (data) => {
+    // console.log(data);
     setError("");
     try {
       const session = await authService.Login(data);
+
       if (session) {
         const userData = authService.getCurrentuser();
         if (userData) {
@@ -48,7 +51,7 @@ const Login = () => {
           </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit} className="mt-8">
+        <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">
             <input
               type="email"
@@ -64,26 +67,16 @@ const Login = () => {
             />
 
             <input
+              label="Password: "
               type="password"
               placeholder="Enter your password"
-              label="Password: "
               {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 8,
-                  message: "Password must be at least 8 characters long",
-                },
-                pattern: {
-                  value:
-                    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/,
-                  message:
-                    "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
-                },
+                required: true,
               })}
             />
-            <Button type="submit" className="w-full">
+            <button type="submit" className="w-full">
               Sign in
-            </Button>
+            </button>
           </div>
         </form>
       </div>
