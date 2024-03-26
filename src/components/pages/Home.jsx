@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import service from "../../Appwrite/Config";
 import Container from "../container/Container";
+import { useSelector } from "react-redux";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const login = useSelector((state) => state.auth.status);
 
   useEffect(() => {
     service.getAllPosts().then((posts) => {
@@ -19,7 +21,9 @@ function Home() {
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
-              <h1 className="text-2xl font-bold">Login to read posts</h1>
+              <h1 className="text-2xl font-bold">
+                {login == false ? "Login to read posts" : "No Posts"}
+              </h1>
             </div>
           </div>
         </Container>
