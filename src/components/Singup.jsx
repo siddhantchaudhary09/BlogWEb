@@ -51,9 +51,10 @@ const Singup = () => {
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(createAccount)}>
-          <div className="space-y-5">
+        <form onSubmit={handleSubmit(createAccount)} className="mt-8">
+          <div className="space-y-5  flex flex-col items-center justify-center">
             <input
+              className="w-8/12"
               label="Full Name: "
               placeholder="Enter your full name"
               {...register("name", {
@@ -61,6 +62,7 @@ const Singup = () => {
               })}
             />
             <input
+              className="w-8/12"
               label="Email: "
               placeholder="Enter your email"
               type="email"
@@ -74,6 +76,7 @@ const Singup = () => {
               })}
             />
             <input
+              className="w-8/12"
               label="Password: "
               type="password"
               placeholder="Enter your password"
