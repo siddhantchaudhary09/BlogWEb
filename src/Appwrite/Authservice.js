@@ -12,30 +12,17 @@ export class AuthService {
     this.account = new Account(this.client);
   }
   async SignUp({ email, password, name }) {
-    try {
-      const User = await this.account.create(
-        ID.unique(),
-        email,
-        password,
-        name
-      );
-      if (User) {
-        //call login method
-        return this.Login({ email, password });
-      } else {
-        return User;
-      }
-    } catch (error) {
-      console.log("error in Signup:", error);
+    const User = await this.account.create(ID.unique(), email, password, name);
+    if (User) {
+      //call login method
+      return this.Login({ email, password });
+    } else {
+      return User;
     }
   }
 
   async Login({ email, password }) {
-    try {
-      return await this.account.createEmailSession(email, password);
-    } catch (error) {
-      console.log("error in Login:", error);
-    }
+    return await this.account.createEmailSession(email, password);
   }
 
   async Logout() {

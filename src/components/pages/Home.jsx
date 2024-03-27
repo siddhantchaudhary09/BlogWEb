@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import service from "../../Appwrite/Config";
 import Container from "../container/Container";
 import { useSelector } from "react-redux";
+import Postcard from "../Postcard";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -15,15 +16,13 @@ function Home() {
     });
   }, []);
 
-  if (posts.length === 0) {
+  if (login === false) {
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
-              <h1 className="text-2xl font-bold">
-                {login == false ? "Login to read posts" : "No Posts"}
-              </h1>
+              <h1 className="text-2xl font-bold">Login to read posts</h1>
             </div>
           </div>
         </Container>
@@ -37,7 +36,7 @@ function Home() {
         <div className="flex flex-wrap">
           {posts.map((post) => (
             <div key={post.$id} className="p-2 w-1/4">
-              <li {...post} />
+              <Postcard {...post} />
             </div>
           ))}
         </div>
