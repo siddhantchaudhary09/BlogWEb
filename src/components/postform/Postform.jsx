@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../Button";
 import Input from "../Input";
@@ -9,6 +9,21 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Postform({ post }) {
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = await service.getfilePreview(post?.featuredImage);
+        setPreviewUrl(url);
+      } catch (error) {
+        console.error("Error fetching file preview:", error);
+      }
+    };
+
+    fetchData();
+  }, [post?.featuredImage]);
+
   const { register, handleSubmit, control, watch, setValue, getValues } =
     useForm({
       defaultValues: {
@@ -109,11 +124,7 @@ function Postform({ post }) {
         />
         {post && (
           <div className="w-full mb-4">
-            <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
-              alt={post.title}
-              className="rounded-lg"
-            />
+            <img src={previewUrl} alt={post.title} className="rounded-lg" />
           </div>
         )}
         <Select
