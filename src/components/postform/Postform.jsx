@@ -22,6 +22,7 @@ function Postform({ post }) {
   const user = useSelector((state) => state.auth.userData);
 
   const Submit = async (data) => {
+    console.log(data);
     if (post) {
       const file = data.image[0]
         ? await service.uploadFile(data.image[0])
@@ -44,10 +45,10 @@ function Postform({ post }) {
       if (file) {
         const fileId = file.$id;
         data.featuredImage = fileId;
-      }
-      const dbPost = await service.createPost({ ...data, userId: user?.$id });
-      if (dbPost) {
-        navigate(`/post/${dbPost.$id}`);
+        const dbPost = await service.createPost({ ...data, userId: user?.$id });
+        if (dbPost) {
+          navigate(`/post/${dbPost.$id}`);
+        }
       }
     }
   };
@@ -104,7 +105,7 @@ function Postform({ post }) {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: false })}
+          {...register("image", { required: !post })}
         />
         {post && (
           <div className="w-full mb-4">
