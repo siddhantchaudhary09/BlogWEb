@@ -98,7 +98,8 @@ export class Service {
 
   async getfilePreview(fileId) {
     try {
-      return this.bucket.getFilePreview(conf.bucketid, fileId);
+      const result = this.bucket.getFilePreview(conf.bucketid, fileId);
+      return result;
     } catch (error) {
       console.log("error in getfilePreview", error);
     }
