@@ -27,7 +27,7 @@ function App() {
     <div className="h-full flex bg-gray-500 sm:w-full ">
       <div className="h-full flex flex-col bg-gray-500 w-full">
         <Header />
-        <main className="flex-grow">{<Outlet />}</main>
+        <main className="flex-grow h-screen">{<Outlet />}</main>
         <Footer className="" />
       </div>
     </div>

@@ -18,7 +18,7 @@ function Home() {
 
   if (login === false) {
     return (
-      <div className="w-full py-8 mt-4 text-center">
+      <div className="w-full py-8 mt-4 text-center h-screen">
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
@@ -31,7 +31,7 @@ function Home() {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full h-screen">
       <Container>
         <div className="md:flex md:flex-wrap">
           {posts.map((post) => (
