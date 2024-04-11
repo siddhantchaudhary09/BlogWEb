@@ -24,11 +24,11 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className=" h-full flex flex-wrap content-between bg-gray-500">
-      <div className="w-full block">
+    <div className="h-full flex bg-gray-500 sm:w-full ">
+      <div className="h-full flex flex-col bg-gray-500 w-full">
         <Header />
-        <main className="h-full">{<Outlet />}</main>
-        <Footer />
+        <main className="flex-grow">{<Outlet />}</main>
+        <Footer className="" />
       </div>
     </div>
   ) : null;
