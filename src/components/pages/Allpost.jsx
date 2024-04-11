@@ -7,7 +7,8 @@ import { useSelector } from "react-redux";
 const Allpost = () => {
   const [posts, setPosts] = useState([]);
   const [Filtered, setFiltered] = useState([]);
-  const user = useSelector((state) => state.auth.userData.$id);
+  const user = useSelector((state) => state.auth.userData);
+  console.log(user);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -22,7 +23,7 @@ const Allpost = () => {
         setLoading(false);
         if (posts) {
           const filteredPosts = posts.documents.filter(
-            (post) => post.userId === user
+            (post) => post.userId === user.$id
           );
           setPosts(filteredPosts);
         }
